@@ -23,7 +23,7 @@ def call(Map config = [:]) {
     stage("Scan Docker Image") {
         echo "Scanning Docker image with Trivy for ${severity} vulnerabilities..."
         sh """
-        trivy image --severity ${severity} --scanners vuln ${imageName}:${imageTag} || true
+        trivy image --severity ${severity} --scanners vuln --skip-db-update --skip-java-db-update ${imageName}:${imageTag} || true
         """
     }
 
